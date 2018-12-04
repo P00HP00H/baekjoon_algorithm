@@ -3,7 +3,7 @@ array = []
 # stack 저장
 stack = []
 # stack이 pop을 하기 때문에 stack만으로는 제대로 된 계산 X
-stack_check = []
+stack_check = []    # index = 0 --> 이렇게 직접 리스트를 생성하지 않아도 됐습니다. stack_check부분에 변수 index로 처리하는 경우도 넣겠습니다.
 # +,- 출력값 저장
 output = []
 
@@ -18,7 +18,7 @@ for i in range(0, a):
     if i == 0:
         for j in range(1, b+1):
             stack.append(j)
-            stack_check.append(j)
+            stack_check.append(j)    # index += 1
             output.append('+')
         stack.pop()
         output.append('-')
@@ -26,9 +26,9 @@ for i in range(0, a):
     else:
         # i번째 입력값이 i-1번째 입력값보다 큰 경우
         if array[i] > array[i-1]:
-            for k in range(stack_check[-1]+1, array[i]+1):
+            for k in range(stack_check[-1]+1, array[i]+1):    # for k in range(index+1, array[i]+1):
                 stack.append(k)
-                stack_check.append(k)
+                stack_check.append(k)    # index += 1
                 output.append('+')
             stack.pop()
             output.append('-')
