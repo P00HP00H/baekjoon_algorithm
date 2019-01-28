@@ -1,7 +1,7 @@
 a = int(input())
-num = 0
 
 for i in range(0, a):
+    num = 0
     b = str(input())
     for j in range(0, len(b)):
         if b[j] == "(":
@@ -10,8 +10,8 @@ for i in range(0, a):
             num -= 1
         if num < 0:
             print("NO")
-        elif j == len(b):
-            if num == 0:
-                print("YES")
-            else:
-                print("NO")
+            break
+    if num == 0:
+        print("YES")
+    elif num > 0:
+        print("NO")
