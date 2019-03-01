@@ -17,16 +17,19 @@ for i in range(0, a):
         for l in range(0, int(b)):
             while 1:
                 for k in range(l+1, int(b)):
+                    num = 0
                     if int(d[l]) < int(d[k]):
                         d.append(d[l])
                         que_chk.append(que_chk[l])
                         del d[l]
-                        # d.pop(l)
+                        # 또는 d.pop(l)
                         del que_chk[l]
-                        # que_chk.pop(l)
+                        # 또는 que_chk(l)
+                        num = 1
                         break
-                if k == int(b)-1:
+                if k == int(b)-1 and num != 1:
                     break
+
         for m in range(0, int(b)):
             if que_chk[0] == 1:
                 output.append(m+1)
@@ -36,5 +39,3 @@ for i in range(0, a):
 
 for m in range(0, a):
     print(output[m])
-
-
