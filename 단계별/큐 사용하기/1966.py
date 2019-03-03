@@ -1,3 +1,5 @@
+# 풀이 1
+
 a = int(input())    # test case 갯수
 que_chk = []    # 위치 체크 idea : 해당 입력값들과 같게 리스트를 만든 후 해당 문서의 위치를 1, 나머지는 모두 0으로 셋팅 --> 1, 0을 다른 문자로 셋팅해도 됨
 output = []     # 값을 한 번에 출력하기 위해 각각 출력값들을 저장
@@ -41,5 +43,79 @@ for i in range(0, a):
                 que_chk.pop(0)      # 다음 입력값을 위해 que_chk를 비워줘야 함
 
 # 출력
+for n in range(0, a):
+    print(output[n])
+
+
+
+
+
+# 풀이 2
+
+a = int(input())
+output = []
+
+for i in range(0, a):
+    b, c = map(int, input().split())
+
+    que_chk = [0]*b
+    que_chk[c] = 1
+    d = input().split()
+
+    # 나만의 방식으로 바꿔보기
+    while 1:
+        num = 0
+        if d.index(max(d)) == 0:
+            d.pop(0)
+            num += 1
+            if que_chk[0] == 1:
+                output.append(num)
+                break
+            else:
+                que_chk.pop(0)
+        else:
+            d.append(d[0])
+            d.pop(0)
+            que_chk.append(que_chk[0])
+            que_chk.pop(0)
+
+        output.append(que_chk.index(1)+1)   # que_chk에서 1인 위치를 찾은 후 출력값은 처음이 1부터 시작이기 때문에 +1을 해줌
+        que_chk = []    # que_chk 초기화
+
+# 출력
+for n in range(0, a):
+    print(output[n])
+
+
+
+
+# 풀이 3
+
+a = int(input())
+output = []
+
+for i in range(0, a):
+    b, c = map(int, input().split())
+
+    que_chk = [0]*b
+    que_chk[c] = 1
+    d = input().split()
+    num = 0
+
+    while 1:
+        if d.index(max(d)) == 0:
+            d.pop(0)
+            num += 1
+            if que_chk[0] == 1:
+                output.append(num)
+                break
+            else:
+                que_chk.pop(0)
+        else:
+            d.append(d[0])
+            d.pop(0)
+            que_chk.append(que_chk[0])
+            que_chk.pop(0)
+
 for n in range(0, a):
     print(output[n])
