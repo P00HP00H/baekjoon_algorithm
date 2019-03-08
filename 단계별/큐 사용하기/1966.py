@@ -48,8 +48,6 @@ for n in range(0, a):
 
 
 
-
-
 # 풀이 2
 
 a = int(input())
@@ -63,10 +61,15 @@ for i in range(0, a):
     d = input().split()
 
     # 나만의 방식으로 바꿔보기
+
+    # 가장 큰 수의 위치 파악한 후 그 앞에 위치한 수들 다 뒤로 보내버리는 식으로 무한 반복
     while 1:
         num = 0
         if d.index(max(d)) == 0:
             d.pop(0)
+            num += 1
+        else:
+
             num += 1
             if que_chk[0] == 1:
                 output.append(num)
@@ -91,6 +94,8 @@ for n in range(0, a):
 
 # 풀이 3
 
+# idea가 좋으나 이런 생각을 못함
+
 a = int(input())
 output = []
 
@@ -102,20 +107,21 @@ for i in range(0, a):
     d = input().split()
     num = 0
 
-    while 1:
-        if d.index(max(d)) == 0:
-            d.pop(0)
-            num += 1
-            if que_chk[0] == 1:
-                output.append(num)
+    while 1:        # 순서 맞출 때까지 무한정 돌리기
+        if d.index(max(d)) == 0:    # 맨 앞의 수가 제일 큰 경우
+            d.pop(0)                # 맨 앞의 수가 제일 크므로 삭제하고 남은 수들끼리 비교하기 위해
+            num += 1        # 맨 앞의 큰 수가 왔으므로 체크
+            if que_chk[0] == 1:         # 내가 궁금한 건 que_chk에서 1이 출력되는 경우 -> 출력되려면 맨 앞으로 와야 함 -> d의 값들의 순서에 의해 좌우됨
+                output.append(num)      # 몇 번째인지를 출력하는 것이므로
                 break
             else:
-                que_chk.pop(0)
-        else:
+                que_chk.pop(0)      # que_chk[0] = 0은 내가 원하는 수가 아니므로 pop
+        else:                       # 맨 앞의 수가 제일 큰 수가 아니면 맨 뒤로 보내기
             d.append(d[0])
             d.pop(0)
             que_chk.append(que_chk[0])
             que_chk.pop(0)
 
+# 출력
 for n in range(0, a):
     print(output[n])
