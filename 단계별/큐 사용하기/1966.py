@@ -48,7 +48,10 @@ for n in range(0, a):
 
 
 
+
 # 풀이 2
+
+# 풀이 3의 idea를 바탕으로 했음 -> 풀이 1 + 풀이 3 정도
 
 a = int(input())
 output = []
@@ -60,30 +63,27 @@ for i in range(0, a):
     que_chk[c] = 1
     d = input().split()
 
-    # 나만의 방식으로 바꿔보기
-
     # 가장 큰 수의 위치 파악한 후 그 앞에 위치한 수들 다 뒤로 보내버리는 식으로 무한 반복
-    while 1:
-        num = 0
-        if d.index(max(d)) == 0:
-            d.pop(0)
-            num += 1
-        else:
+    num = 0     # num은 맨 앞에 가장 큰 수를 위치시킨 횟수를 의미
 
-            num += 1
-            if que_chk[0] == 1:
-                output.append(num)
-                break
-            else:
-                que_chk.pop(0)
-        else:
+    # 가장 큰 수의 위치를 파악안 후 그 앞에 위치한 수들 모두 뒤로 보내버리는 식으로 무한 반복
+    while 1:
+        for i in range(0, d.index(max(d))):
             d.append(d[0])
             d.pop(0)
             que_chk.append(que_chk[0])
             que_chk.pop(0)
+        num += 1        # 맨 앞에 가장 큰 수를 위치시켰으므로 +1
+        if que_chk[0] == 1:     # que_chk[0] = 1인 경우가 출력되는 것이므로 가장 큰 수를 위치시킨 횟수만큼인 num을 출력
+            output.append(num)
+            break
+        else:
+            d.pop(0)
+            que_chk.pop(0)
 
-        output.append(que_chk.index(1)+1)   # que_chk에서 1인 위치를 찾은 후 출력값은 처음이 1부터 시작이기 때문에 +1을 해줌
-        que_chk = []    # que_chk 초기화
+    # 큐 값들 초기화
+    d = []
+    que_chk = []
 
 # 출력
 for n in range(0, a):
