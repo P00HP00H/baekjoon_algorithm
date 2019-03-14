@@ -1,16 +1,15 @@
 que = []
 num = 0
 a, b = map(int, input().split())
-#c = map(int, input().split())
 c = input().split()
 
 for i in range(0, a):
     que.append(i+1)
 
 for j in range(0, b):
-    if int(c[j]) < a/2:
+    if que.index(int(c[j])) <= len(que)/2:
         while 1:
-            if que[0] == c[j]:
+            if que[0] == int(c[j]):
                 que.pop(0)
                 break
             else:
@@ -19,7 +18,7 @@ for j in range(0, b):
                 num += 1
     else:
         while 1:
-            if que[0] == c[j]:
+            if que[0] == int(c[j]):
                 que.pop(0)
                 break
             else:
