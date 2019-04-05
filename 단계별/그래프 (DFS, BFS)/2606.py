@@ -1,10 +1,13 @@
 visit = []      # stack
 visited = []
 a = int(input())
+adj = [[0]*a for i in range(a)]
 b = int(input())
 
 for i in range(0, b):
     c = input().split()
+    adj[c[0]][c[1]] = 1
+    adj[c[1]][c[0]] = 1
     while visit:
         d = visit.pop()
         visited.append(d)
