@@ -31,7 +31,7 @@ for l in range(0, a):
     b = int(input())
     array.append(b)     # 입력값들을 순서대로 배열에 저장
 
-array.sort()
+array.sort()        # sort()함수는 오름차순 정렬(1, 2, 3, ...), reverse()함수는 내림차순 정렬(10, 9, 8, ...)
 
 for k in range(0, len(array)):      # 출력
     print(array[k])
