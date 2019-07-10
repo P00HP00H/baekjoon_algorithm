@@ -1,28 +1,8 @@
 # 병합 정렬
 
-array = []
-change_num = 0
-a = int(input())        # 입력 갯수
-
-for l in range(0, a):
-    b = int(input())
-    array.append(b)     # 입력값들을 순서대로 배열에 저장
-
-for i in range(1, len(array)):
-    for j in range(i-1, -1, -1):
-        if array[j+1] < array[j]:       # 앞 숫자가 뒤 숫자보다 크면
-            change_num = array[j]       # 변수를 하나 두어
-            array[j] = array[j+1]       # 배열 위치를
-            array[j+1] = change_num     # 변경, ex) [3, 1, 4] -> [3, 4, 1]
-        else:
-            break
-
-for k in range(0, len(array)):      # 출력
-    print(array[k])
-
 def merge_sorted(arr):
-    if len(arr)>1:
-        mid = len(arr)//2
+    if len(arr) > 1:
+        mid = len(arr) // 2
         left = arr[:mid]
         right = arr[mid:]
 
@@ -32,5 +12,35 @@ def merge_sorted(arr):
     else:
         return arr
 
-# merge 함수 만들 차례
-def merge
+def merge(left, right):
+    if len[left] == 1 and len[right] == 1:
+        if left[0] < right[0]:
+            sorted_array.append(left[0])
+            sorted_array.append(right[0])
+        else:
+            sorted_array.append(right[0])
+            sorted_array.append(left[0])
+
+    else:       # 한 쪽 배열이 모두 없어졌을 경우 계산하는 코드를 넣어야 함 -> 여기 할 차례
+        for i in range(0, len(left)*len(right)):
+            if left[0] < right[0]:
+                sorted_array.append(left[0])
+                del left[0]
+            else:
+                sorted_array.append(right[0])
+                del right[0]
+
+    return sorted_array
+
+array = []
+sorted_array = []
+a = int(input())        # 입력 갯수
+
+for l in range(0, a):
+    b = int(input())
+    array.append(b)     # 입력값들을 순서대로 배열에 저장
+
+merge_sorted(array)
+
+for i in range(0, len(array)):      # 출력
+    print(sorted_array[i])
