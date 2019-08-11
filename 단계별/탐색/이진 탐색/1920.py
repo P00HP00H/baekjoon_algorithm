@@ -9,22 +9,25 @@ d = list(map(int, input().split()))
 b.sort()    # 이진 탐색은 정렬된 배열이어야만 가능
 
 def binary_search(arr_num, num):
-    while(arr_num != 0):       # arr_num = 0일 때(즉, 끝까지 탐색)까지 무한반복
-        #arr_num //= 2
-        if(num < b[arr_num]): # 왼쪽 배열 처리
-            arr_num //= 2
-            if(num == b[arr_num]):
-                return 1
-            elif(arr_num == 0):
+    first = 0
+    last = arr_num
+    while 1:
+        mid = (first + last) // 2       # 첫 번째 스타트
+        if(num < b[mid]):
+            if(last == mid):
                 return 0
-        elif(num > b[arr_num]):
-            arr_num += len(b)
-            arr_num //= 2
-            if (num == b[arr_num]):
-                return 1
-            elif (arr_num == 0):
-                return 0
+            else:
+                last = mid
+        elif(num > b[mid]):
+            if (first == mid):
+                if num == b[last]:      # 위의 경우(맨 앞의 경우)는 first로 수렴하기 때문에 상관없고 맨 뒤의 경우는 계속 반복돼도 first로 수렴하기 때문에 한 번 수렴했으면 그 다음 값인 last와 비교
+                    return 1
+                else:
+                    return 0
+            else:
+                first = mid
+        elif (num == b[mid]):
+            return 1
 
-
-for i in range(0, d):
-    print(binary_search(a, d[i]))
+for i in range(0, c):
+    print(binary_search(a-1, d[i]))
